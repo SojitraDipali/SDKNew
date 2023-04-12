@@ -16,7 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
-import com.sdk.mynew.R;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.NativeAd;
@@ -51,12 +50,15 @@ public class Native_Ads {
             case "banner":
                 Native_Banner_Ads(viewGroup);
                 break;
+
             case "small":
                 Native_Banner_Ads1(viewGroup);
                 break;
+
             case "medium":
                 Native_Ad1(viewGroup);
                 break;
+
             case "large":
                 Native_Ad(viewGroup);
                 break;
@@ -64,98 +66,118 @@ public class Native_Ads {
     }
 
     public void Native_Ad(final ViewGroup viewGroup) {
-        new Native_Ads_Static(context).Native_Ads(viewGroup);
-        if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
-            Admob_Native_Ads(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
-            if (Constant.Alt_Cnt_Native == 2) {
+        if (preference.getNativeflag().equalsIgnoreCase("on")) {
+            new Native_Ads_Static(context).Native_Ads(viewGroup);
+            if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
                 Admob_Native_Ads(viewGroup);
-                Constant.Alt_Cnt_Native = 1;
-            } else {
+            } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
+                if (Constant.Alt_Cnt_Native == 2) {
+                    Admob_Native_Ads(viewGroup);
+                    Constant.Alt_Cnt_Native = 1;
+                } else {
+                    Facebook_Native_Ads(viewGroup);
+                    Constant.Alt_Cnt_Native++;
+                }
+            } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
+                Admob_FB_Multiple_Native_Ads(viewGroup);
+            } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
                 Facebook_Native_Ads(viewGroup);
-                Constant.Alt_Cnt_Native++;
             }
-        } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
-            Admob_FB_Multiple_Native_Ads(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
-            Facebook_Native_Ads(viewGroup);
+        } else {
+            viewGroup.setVisibility(View.GONE);
         }
     }
 
     public void Native_Ad1(final ViewGroup viewGroup) {
-        new Native_Ads_Static(context).Native_Ads1(viewGroup);
-        if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
-            Admob_Native_Ads1(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
-            if (Constant.Alt_Cnt_Native == 2) {
+        if (preference.getNativeflag().equalsIgnoreCase("on")) {
+            new Native_Ads_Static(context).Native_Ads1(viewGroup);
+            if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
                 Admob_Native_Ads1(viewGroup);
-                Constant.Alt_Cnt_Native = 1;
-            } else {
+            } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
+                if (Constant.Alt_Cnt_Native == 2) {
+                    Admob_Native_Ads1(viewGroup);
+                    Constant.Alt_Cnt_Native = 1;
+                } else {
+                    Facebook_Native_Ads1(viewGroup);
+                    Constant.Alt_Cnt_Native++;
+                }
+            } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
+                Admob_FB_Multiple_Native_Ads1(viewGroup);
+            } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
                 Facebook_Native_Ads1(viewGroup);
-                Constant.Alt_Cnt_Native++;
             }
-        } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
-            Admob_FB_Multiple_Native_Ads1(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
-            Facebook_Native_Ads1(viewGroup);
+        } else {
+            viewGroup.setVisibility(View.GONE);
         }
     }
 
     public void Native_Banner_Ads(final ViewGroup viewGroup) {
-        new Native_Ads_Static(context).Native_Banner_Ads(viewGroup);
-        Log.d(TAG, "Native_Banner_Ads: " + preference.get_Adstyle());
-        if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
-            Admob_Native_Banner_Ads(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
-            if (Constant.Alt_Cnt_Native_Banner == 2) {
+        if (preference.getNativeflag().equalsIgnoreCase("on")) {
+            new Native_Ads_Static(context).Native_Banner_Ads(viewGroup);
+            Log.d(TAG, "Native_Banner_Ads: " + preference.get_Adstyle());
+            if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
                 Admob_Native_Banner_Ads(viewGroup);
-                Constant.Alt_Cnt_Native_Banner = 1;
-            } else {
+            } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
+                if (Constant.Alt_Cnt_Native_Banner == 2) {
+                    Admob_Native_Banner_Ads(viewGroup);
+                    Constant.Alt_Cnt_Native_Banner = 1;
+                } else {
+                    Facebook_Native_Banner_Ads(viewGroup);
+                    Constant.Alt_Cnt_Native_Banner++;
+                }
+            } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
+                Admob_FB_Multiple_Native_Banner_Ads(viewGroup);
+            } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
                 Facebook_Native_Banner_Ads(viewGroup);
-                Constant.Alt_Cnt_Native_Banner++;
             }
-        } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
-            Admob_FB_Multiple_Native_Banner_Ads(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
-            Facebook_Native_Banner_Ads(viewGroup);
+        } else {
+            viewGroup.setVisibility(View.GONE);
         }
     }
 
     public void Native_Banner_Ads1(final ViewGroup viewGroup) {
-        new Native_Ads_Static(context).Native_Banner_Ads1(viewGroup);
-        if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
-            Admob_Native_Banner_Ads1(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
-            if (Constant.Alt_Cnt_Native_Banner == 2) {
+        if (preference.getNativeflag().equalsIgnoreCase("on")) {
+            new Native_Ads_Static(context).Native_Banner_Ads1(viewGroup);
+            if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
                 Admob_Native_Banner_Ads1(viewGroup);
-                Constant.Alt_Cnt_Native_Banner = 1;
-            } else {
+            } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
+                if (Constant.Alt_Cnt_Native_Banner == 2) {
+                    Admob_Native_Banner_Ads1(viewGroup);
+                    Constant.Alt_Cnt_Native_Banner = 1;
+                } else {
+                    Facebook_Native_Banner_Ads1(viewGroup);
+                    Constant.Alt_Cnt_Native_Banner++;
+                }
+            } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
+                Admob_FB_Multiple_Native_Banner_Ads1(viewGroup);
+            } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
                 Facebook_Native_Banner_Ads1(viewGroup);
-                Constant.Alt_Cnt_Native_Banner++;
             }
-        } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
-            Admob_FB_Multiple_Native_Banner_Ads1(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
-            Facebook_Native_Banner_Ads1(viewGroup);
+        } else {
+            viewGroup.setVisibility(View.GONE);
         }
     }
 
     public void Adaptive_Banner(final ViewGroup viewGroup) {
-        new Native_Ads_Static(context).Adaptive_Banner(viewGroup);
-        if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
-            Admob_Adaptive_Banner(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
-            if (Constant.Alt_Cnt_Banner == 2) {
+        if (preference.getBannerflag().equalsIgnoreCase("on")) {
+            new Native_Ads_Static(context).Adaptive_Banner(viewGroup);
+            if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
                 Admob_Adaptive_Banner(viewGroup);
-                Constant.Alt_Cnt_Banner = 1;
-            } else {
+            } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
+                if (Constant.Alt_Cnt_Banner == 2) {
+                    Admob_Adaptive_Banner(viewGroup);
+                    Constant.Alt_Cnt_Banner = 1;
+                } else {
+                    Facebook_Adaptive_Banner(viewGroup);
+                    Constant.Alt_Cnt_Banner++;
+                }
+            } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
+                Admob_FB_Multiple_Adaptive_Banner(viewGroup);
+            } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
                 Facebook_Adaptive_Banner(viewGroup);
-                Constant.Alt_Cnt_Banner++;
             }
-        } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
-            Admob_FB_Multiple_Adaptive_Banner(viewGroup);
-        } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
-            Facebook_Adaptive_Banner(viewGroup);
+        } else {
+            viewGroup.setVisibility(View.GONE);
         }
     }
 

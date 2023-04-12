@@ -17,8 +17,12 @@ public class MyApplication extends MultiDexApplication {
                 instance,
                 initializationStatus -> {
                     listener.onInitializationComplete(initializationStatus);
-                    new AppOpenManager(instance);
-                    new Native_Ads_Load(instance);
+                    if (new AppPreference(instance).getOpenflag().equalsIgnoreCase("on")) {
+                        new AppOpenManager(instance);
+                    }
+                    if (new AppPreference(instance).getNativeflag().equalsIgnoreCase("on")) {
+                        new Native_Ads_Load(instance);
+                    }
                 });
     }
 

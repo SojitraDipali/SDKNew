@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sdk.mynew.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 public class Native_Ads_Static {

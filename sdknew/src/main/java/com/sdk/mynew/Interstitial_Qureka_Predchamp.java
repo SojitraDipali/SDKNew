@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.sdk.mynew.R;
 
 import java.util.Random;
 
@@ -119,7 +118,5 @@ public class Interstitial_Qureka_Predchamp {
                 dialog.show();
             }
         }
-
     }
-
 }

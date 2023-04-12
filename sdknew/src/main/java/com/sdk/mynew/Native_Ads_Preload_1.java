@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.sdk.mynew.R;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.nativead.NativeAd;
 
@@ -56,19 +55,32 @@ public class Native_Ads_Preload_1 {
         String type = isList ? new AppPreference(context).getNativeTypeList() : new AppPreference(context).getNativeTypeOther();
         switch (type) {
             case "banner":
-                Native_Banner_Ads(viewGroup);
+                if (preference.getNativeflag().equalsIgnoreCase("on")) {
+                    Native_Banner_Ads(viewGroup);
+                } else {
+                    viewGroup.setVisibility(View.GONE);
+                }
                 break;
-
             case "small":
-                Native_Small_Ads(viewGroup);
+                if (preference.getNativeflag().equalsIgnoreCase("on")) {
+                    Native_Small_Ads(viewGroup);
+                } else {
+                    viewGroup.setVisibility(View.GONE);
+                }
                 break;
-
             case "medium":
-                Native_Medium_Size(viewGroup);
+                if (preference.getNativeflag().equalsIgnoreCase("on")) {
+                    Native_Medium_Size(viewGroup);
+                } else {
+                    viewGroup.setVisibility(View.GONE);
+                }
                 break;
-
             case "large":
-                Native_Large_Size(viewGroup);
+                if (preference.getNativeflag().equalsIgnoreCase("on")) {
+                    Native_Large_Size(viewGroup);
+                } else {
+                    viewGroup.setVisibility(View.GONE);
+                }
                 break;
         }
     }
@@ -90,7 +102,6 @@ public class Native_Ads_Preload_1 {
             viewGroup.addView(inflate);
 
         } else {
-            viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native_Banner(viewGroup);
         }
     }
@@ -111,7 +122,6 @@ public class Native_Ads_Preload_1 {
             viewGroup.addView(inflate);
 
         } else {
-            viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native_Banner(viewGroup);
         }
     }
@@ -129,10 +139,7 @@ public class Native_Ads_Preload_1 {
             templateView.setNativeAd(nativeAd);
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
-
-
         } else {
-            viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native(viewGroup);
         }
     }
@@ -150,10 +157,7 @@ public class Native_Ads_Preload_1 {
             templateView.setNativeAd(nativeAd);
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
-
-
         } else {
-            viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native(viewGroup);
         }
     }
@@ -183,7 +187,7 @@ public class Native_Ads_Preload_1 {
                 BannerContainer.removeAllViews();
                 BannerContainer.addView(view);
             } else {
-                new Native_Ads_Static(context).Native_Ads(BannerContainer);
+                BannerContainer.setVisibility(View.GONE);
             }
         }
     }
@@ -215,7 +219,7 @@ public class Native_Ads_Preload_1 {
                 BannerContainer.removeAllViews();
                 BannerContainer.addView(view);
             } else {
-                new Native_Ads_Static(context).Native_Banner_Ads(BannerContainer);
+                BannerContainer.setVisibility(View.GONE);
             }
         }
     }
@@ -239,7 +243,7 @@ public class Native_Ads_Preload_1 {
                 BannerContainer.removeAllViews();
                 BannerContainer.addView(view);
             } else {
-                new Native_Ads_Static(context).Adaptive_Banner(BannerContainer);
+                BannerContainer.setVisibility(View.GONE);
             }
         }
     }

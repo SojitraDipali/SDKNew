@@ -59,6 +59,7 @@ public class AppPreference {
     String Splash_OpenApp_Id = "Splash_OpenApp_Id";
     String textColor = "textColor";
     String backColor = "backColor";
+    String page = "page";
     String backflag = "backflag";
     String backclick = "backclick";
     String native_type_list = "native_type_list";
@@ -67,6 +68,11 @@ public class AppPreference {
     String showinstall = "showinstall";
     String referrerUrl = "referrerUrl";
     String screen = "screen";
+    String Organic_Click_Count = "Organic_Click_Count";
+    String nativeflag = "native";
+    String bannerflag = "banner";
+    String fullflag = "fullflag";
+    String openflag = "openflag";
 
     public AppPreference(Context context) {
         this.appSharedPref = context.getSharedPreferences(this.USER_PREFS, 0);
@@ -93,6 +99,13 @@ public class AppPreference {
 
     public void setMedium(String vpnurl) {
         this.prefEditor.putString(this.medium, vpnurl).commit();
+    }
+    public String getPage() {
+        return this.appSharedPref.getString(this.page, "");
+    }
+
+    public void setPage(String page) {
+        this.prefEditor.putString(this.page, page).commit();
     }
 
     public boolean getCheckinstallbool() {
@@ -162,7 +175,11 @@ public class AppPreference {
         set_Click_Flag(jsonArray.getJSONObject(0).optString("clickflag"));
         setScreen(jsonArray.getJSONObject(0).optString("screen"));
         set_Click_Count(jsonArray.getJSONObject(0).optString("click"));
-        set_Splash_OpenApp_Id(jsonArray.getJSONObject(0).optString("admob-splash-open"));
+        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick"));
+        setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
+        setBannerflag(jsonArray.getJSONObject(0).optString("banner", "on"));
+        setOpenflag(jsonArray.getJSONObject(0).optString("open", "on"));
+        setFullflag(jsonArray.getJSONObject(0).optString("full", "on"));        set_Splash_OpenApp_Id(jsonArray.getJSONObject(0).optString("admob-splash-open"));
         set_splash_flag(jsonArray.getJSONObject(0).optString("splash"));
         set_Facebook_Interstitial(jsonArray.getJSONObject(0).optString("fb-full"));
         set_Facebook_Native(jsonArray.getJSONObject(0).optString("fb-native"));
@@ -177,7 +194,44 @@ public class AppPreference {
         setMedium(jsonArray.getJSONObject(0).optString("medium"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
     }
+    public String getFullflag() {
+        return this.appSharedPref.getString(this.fullflag, "");
+    }
 
+    public void setFullflag(String str) {
+        this.prefEditor.putString(this.fullflag, str).commit();
+    }
+
+    public String getOpenflag() {
+        return this.appSharedPref.getString(this.openflag, "");
+    }
+
+    public void setOpenflag(String str) {
+        this.prefEditor.putString(this.openflag, str).commit();
+    }
+
+    public String getNativeflag() {
+        return this.appSharedPref.getString(this.nativeflag, "");
+    }
+
+    public void setNativeflag(String str) {
+        this.prefEditor.putString(this.nativeflag, str).commit();
+    }
+
+    public String getBannerflag() {
+        return this.appSharedPref.getString(this.bannerflag, "");
+    }
+
+    public void setBannerflag(String str) {
+        this.prefEditor.putString(this.bannerflag, str).commit();
+    }
+    public String getOrganic_Click_Count() {
+        return this.appSharedPref.getString(this.Organic_Click_Count, "");
+    }
+
+    public void setOrganic_Click_Count(String Organic_Click_Count) {
+        this.prefEditor.putString(this.Organic_Click_Count, Organic_Click_Count).commit();
+    }
     public String getBackflag() {
         return this.appSharedPref.getString(this.backflag, "");
     }
