@@ -1,4 +1,5 @@
 package com.sdk.mynew;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -100,6 +101,7 @@ public class AppPreference {
     public void setMedium(String vpnurl) {
         this.prefEditor.putString(this.medium, vpnurl).commit();
     }
+
     public String getPage() {
         return this.appSharedPref.getString(this.page, "");
     }
@@ -180,7 +182,8 @@ public class AppPreference {
         setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
         setBannerflag(jsonArray.getJSONObject(0).optString("banner", "on"));
         setOpenflag(jsonArray.getJSONObject(0).optString("open", "on"));
-        setFullflag(jsonArray.getJSONObject(0).optString("full", "on"));        set_Splash_OpenApp_Id(jsonArray.getJSONObject(0).optString("admob-splash-open"));
+        setFullflag(jsonArray.getJSONObject(0).optString("full", "on"));
+        set_Splash_OpenApp_Id(jsonArray.getJSONObject(0).optString("admob-splash-open"));
         set_splash_flag(jsonArray.getJSONObject(0).optString("splash"));
         set_Facebook_Interstitial(jsonArray.getJSONObject(0).optString("fb-full"));
         set_Facebook_Native(jsonArray.getJSONObject(0).optString("fb-native"));
@@ -195,6 +198,7 @@ public class AppPreference {
         setMedium(jsonArray.getJSONObject(0).optString("medium"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
     }
+
     public String getFullflag() {
         return this.appSharedPref.getString(this.fullflag, "");
     }
@@ -226,6 +230,7 @@ public class AppPreference {
     public void setBannerflag(String str) {
         this.prefEditor.putString(this.bannerflag, str).commit();
     }
+
     public String getOrganic_Click_Count() {
         return this.appSharedPref.getString(this.Organic_Click_Count, "");
     }
@@ -233,6 +238,7 @@ public class AppPreference {
     public void setOrganic_Click_Count(String Organic_Click_Count) {
         this.prefEditor.putString(this.Organic_Click_Count, Organic_Click_Count).commit();
     }
+
     public String getBackflag() {
         return this.appSharedPref.getString(this.backflag, "");
     }

@@ -112,6 +112,10 @@ public class Interstitial_Ads_AdmobBack {
                     if (customProgressDialog.isShowing()) {
                         customProgressDialog.dismiss();
                     }
+                    AppPreference.isFullScreenShow = false;
+                    Interstitial_Qureka_Predchamp.Show_Qureka_Predchamp_Ads(source_class, adCloseListener);
+                    Constant.IS_TIME_INTERVAL = false;
+                    new Handler().postDelayed(() -> Constant.IS_TIME_INTERVAL = true, Long.parseLong(String.valueOf(preference.get_Ad_Time_Interval())) * 1000);
                 }
             });
         } else {
@@ -188,6 +192,9 @@ public class Interstitial_Ads_AdmobBack {
                         customProgressDialog.dismiss();
                     }
                     AppPreference.isFullScreenShow = false;
+                    Interstitial_Qureka_Predchamp.Show_Qureka_Predchamp_Ads(source_class, adCloseListener);
+                    Constant.IS_TIME_INTERVAL = false;
+                    new Handler().postDelayed(() -> Constant.IS_TIME_INTERVAL = true, Long.parseLong(String.valueOf(preference.get_Ad_Time_Interval())) * 1000);
                 }
             });
         } else {
