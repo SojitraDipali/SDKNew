@@ -167,6 +167,7 @@ public class AppPreference {
         set_Admob_Native_Id2(jsonArray.getJSONObject(0).optString("admob-native2"));
         set_Admob_Native_Id3(jsonArray.getJSONObject(0).optString("admob-native3"));
         set_Admob_Banner_Id1(jsonArray.getJSONObject(0).optString("admob-banner1"));
+        setPage(jsonArray.getJSONObject(0).optString("page"));
         set_Admob_Banner_Id2(jsonArray.getJSONObject(0).optString("admob-banner2"));
         set_Admob_Banner_Id3(jsonArray.getJSONObject(0).optString("admob-banner3"));
         set_Admob_OpenApp_Id1(jsonArray.getJSONObject(0).optString("admob-open1"));
