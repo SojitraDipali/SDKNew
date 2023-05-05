@@ -140,7 +140,7 @@
                 <Button
                     android:id="@+id/cta"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@drawable/ads_button"
                     android:gravity="center"
                     android:lines="1"
