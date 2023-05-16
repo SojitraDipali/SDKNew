@@ -55,7 +55,7 @@ public class Interstitial_Ads {
                 Interstitial_Ads_Fb_Admob.ShowAd_FullFb(source_class, adCloseListener);
             }
         } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
-            Interstitial_Ads_Facebook.ShowAd_Facebook(source_class, adCloseListener);
+            Interstitial_Ads_Fb_Admob.ShowAd_FullFb(source_class, adCloseListener);
         } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
             Interstitial_Ads_Admob_Fb_Qureka_MultipleAds.ShowAd_Full(source_class, adCloseListener);
         }
