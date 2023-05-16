@@ -135,6 +135,11 @@ public class CheckInstallActivity {
             if (preference.getReferrerUrl().toLowerCase(Locale.getDefault()).contains(abc.toLowerCase(Locale.getDefault())))
                 return true;
         }
+        if (preference.getGclid().equalsIgnoreCase("on")) {
+            if (!preference.getReferrerUrl().toLowerCase(Locale.getDefault()).contains(preference.getGclidValue())) {
+                return true;
+            } else return false;
+        }
         return false;
     }
 

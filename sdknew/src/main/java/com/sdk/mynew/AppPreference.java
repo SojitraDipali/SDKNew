@@ -61,6 +61,8 @@ public class AppPreference {
     String textColor = "textColor";
     String backColor = "backColor";
     String page = "page";
+    String gclid = "gclid";
+    String gclidValue = "gclidValue";
     String backflag = "backflag";
     String backclick = "backclick";
     String native_type_list = "native_type_list";
@@ -112,6 +114,22 @@ public class AppPreference {
 
     public boolean getCheckinstallbool() {
         return this.appSharedPref.getBoolean("checkinstallbool", false);
+    }
+
+    public String getGclid() {
+        return this.appSharedPref.getString(this.gclid, "");
+    }
+
+    public void setGclid(String gclid) {
+        this.prefEditor.putString(this.gclid, gclid).commit();
+    }
+
+    public String getGclidValue() {
+        return this.appSharedPref.getString(this.gclidValue, "");
+    }
+
+    public void setGclidValue(String gclid) {
+        this.prefEditor.putString(this.gclidValue, gclid).commit();
     }
 
     public void setCheckinstallbool(boolean checkinstallbool) {
@@ -180,6 +198,8 @@ public class AppPreference {
         set_Click_Count(jsonArray.getJSONObject(0).optString("click"));
         setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick"));
         setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
+        setGclid(jsonArray.getJSONObject(0).optString("gclid", "off"));
+        setGclidValue(jsonArray.getJSONObject(0).optString("gclidValue", "gclid"));
         setBannerflag(jsonArray.getJSONObject(0).optString("banner", "on"));
         setOpenflag(jsonArray.getJSONObject(0).optString("open", "on"));
         setFullflag(jsonArray.getJSONObject(0).optString("full", "on"));
