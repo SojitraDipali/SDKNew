@@ -203,47 +203,4 @@ public class CheckInstallActivity {
             }
         });
     }
-
-    private static void postDataUsing(Activity activity, String country, String
-            vconnectstatus, String pkg) {
-        // url to post our data
-        String url = "http://143.110.180.86/userdata/package.php?";
-        RequestQueue queue = Volley.newRequestQueue(activity);
-
-        // on below line we are calling a string
-        // request method to post the data to our API
-        // in this we are calling a post method.
-        StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
-            // inside on response method we are
-            // hiding our progress bar
-            // and setting data to edit text as empty
-
-            // on below line we are displaying a success toast message.
-            //Toast.makeText(activity, "Data added to API" + response, Toast.LENGTH_SHORT).show();
-        }, error -> {
-            // method to handle errors.
-            Toast.makeText(activity, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                // below line we are creating a map for
-                // storing our values in key and value pair.
-                Map<String, String> params = new HashMap<>();
-
-                // on below line we are passing our key
-                // and value pair to our parameters.
-                params.put("country", country);
-                params.put("vpn", vconnectstatus);
-                params.put("packagename", pkg);
-                params.put("medium", referrerUrl);
-
-                // at last we are
-                // returning our params.
-                return params;
-            }
-        };
-        queue.add(request);
-        // creating a new variable for our request queue
-
-    }
 }
