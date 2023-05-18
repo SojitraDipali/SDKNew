@@ -14,19 +14,13 @@ import androidx.annotation.NonNull;
 import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.appopen.AppOpenAd;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class CheckInstallActivity {
     static InstallReferrerClient referrerClient;
@@ -138,6 +132,21 @@ public class CheckInstallActivity {
             Constant.NativeCountIncr++;
         }
     }
+
+    public static void Native_Large_Count(Activity activity, ViewGroup viewGroup) {
+        AppPreference preference = new AppPreference(activity);
+        int nativecount = Integer.parseInt(preference.getNativecount());
+        if (Constant.NativeCountIncr == nativecount) {
+            Constant.NativeCountIncr = 0;
+        }
+        if (Constant.NativeCountIncr % nativecount == 0) {
+            Constant.NativeCountIncr++;
+            Native_Ads_Preload_1.getInstance(activity).addNativeAd(viewGroup, false);
+        } else {
+            Constant.NativeCountIncr++;
+        }
+    }
+
     public static boolean checkIsOrganic(Activity activity) {
         AppPreference preference = new AppPreference(activity);
         String[] splitParts = preference.getMedium().split(",");
