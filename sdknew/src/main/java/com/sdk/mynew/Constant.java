@@ -26,6 +26,7 @@ public class Constant {
     public static int OpenAdCounter = 0;
     public static int BannerAdCounter = 0;
     public static int Back_Counter = 0;
+    public static int NativeCountIncr = 0;
 
     public static int[] qureka_icon = {R.drawable.qureka_icon1, R.drawable.qureka_icon2, R.drawable.qureka_icon3, R.drawable.qureka_icon4, R.drawable.qureka_icon5};
     public static int[] predchamp_icon = {R.drawable.predchamp_icon1, R.drawable.predchamp_icon2, R.drawable.predchamp_icon3, R.drawable.predchamp_icon4, R.drawable.predchamp_icon5};

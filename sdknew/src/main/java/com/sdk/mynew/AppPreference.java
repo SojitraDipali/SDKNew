@@ -56,6 +56,7 @@ public class AppPreference {
     String adbtcolor = "Adbtcolor";
     Context contexts;
     String medium = "medium";
+    String nativecount = "nativecount";
 
     String splash_flag = "splash_flag";
     String Splash_OpenApp_Id = "Splash_OpenApp_Id";
@@ -104,7 +105,13 @@ public class AppPreference {
     public void setMedium(String vpnurl) {
         this.prefEditor.putString(this.medium, vpnurl).commit();
     }
+    public String getNativecount() {
+        return this.appSharedPref.getString(this.nativecount, "");
+    }
 
+    public void setNativecount(String str) {
+        this.prefEditor.putString(this.nativecount, str).commit();
+    }
     public String getPage() {
         return this.appSharedPref.getString(this.page, "");
     }
@@ -219,6 +226,7 @@ public class AppPreference {
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
         setMedium(jsonArray.getJSONObject(0).optString("medium"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
+        setNativecount(jsonArray.getJSONObject(0).optString("nativecount", "2"));
     }
 
     public String getWsaver() {
