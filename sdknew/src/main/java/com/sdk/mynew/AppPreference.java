@@ -32,6 +32,7 @@ public class AppPreference {
     String Ad_Time_Interval = "Ad_Time_Interval";
     String Account = "Account";
     String Privacy_Policy = "Privacy_Policy";
+    String wsaver = "wsaver";
 
     String Splash_Interstitial_Id = "Splash_Interstitial_Id";
 
@@ -212,6 +213,7 @@ public class AppPreference {
         setBackflag(jsonArray.getJSONObject(0).optString("backflag"));
         setBackclick(jsonArray.getJSONObject(0).optString("backclick"));
         setNativeTypeList(jsonArray.getJSONObject(0).optString("native_type_list"));
+        setWsaver(jsonArray.getJSONObject(0).optString("wsaver", "on"));
         setNativeTypeOther(jsonArray.getJSONObject(0).optString("native_type_other"));
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
@@ -219,6 +221,13 @@ public class AppPreference {
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
     }
 
+    public String getWsaver() {
+        return this.appSharedPref.getString(this.wsaver, "");
+    }
+
+    public void setWsaver(String wsaver) {
+        this.prefEditor.putString(this.wsaver, wsaver).commit();
+    }
     public String getFullflag() {
         return this.appSharedPref.getString(this.fullflag, "");
     }
