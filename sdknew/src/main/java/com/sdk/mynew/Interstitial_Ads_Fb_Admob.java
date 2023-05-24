@@ -55,7 +55,7 @@ public class Interstitial_Ads_Fb_Admob {
                                 public void onError(Ad ad, com.facebook.ads.AdError adError) {
                                     AppPreference.isFullScreenShow = false;
                                     Log.e("TAG", "onError: " + adError.getErrorCode());
-                                    ShowAd_Full(source_class, adCloseListener);
+                                    ShowAd_Full(source_class, adCloseListener, customProgressDialog);
                                 }
 
                                 @Override
@@ -87,22 +87,19 @@ public class Interstitial_Ads_Fb_Admob {
         }
     }
 
-    public static void ShowAd_Full(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener) {
+    public static void ShowAd_Full(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, CustomProgressDialog customProgressDialog) {
         AppPreference appPreference = new AppPreference(source_class);
         if (appPreference.get_Ad_Flag().equals("admob")) {
-            ShowAd_FullAdmob(source_class, adCloseListener);
+            ShowAd_FullAdmob(source_class, adCloseListener, customProgressDialog);
         } else {
-            ShowAd_FullAdx(source_class, adCloseListener);
+            ShowAd_FullAdx(source_class, adCloseListener, customProgressDialog);
         }
     }
 
-    public static void ShowAd_FullAdmob(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener) {
+    public static void ShowAd_FullAdmob(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, CustomProgressDialog customProgressDialog) {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
             Constant.Front_Counter++;
-            final CustomProgressDialog customProgressDialog = new CustomProgressDialog(source_class, "Showing Ad...");
-            customProgressDialog.setCancelable(false);
-            customProgressDialog.show();
             AdRequest adRequest = new AdRequest.Builder().build();
             InterstitialAd.load(source_class, new AppPreference(source_class).get_Admob_Interstitial_Id1(), adRequest, new InterstitialAdLoadCallback() {
                 @Override
@@ -178,13 +175,10 @@ public class Interstitial_Ads_Fb_Admob {
         new Handler().postDelayed(() -> Constant.IS_TIME_INTERVAL = true, Long.parseLong(String.valueOf(preference.get_Ad_Time_Interval())) * 1000);
     }
 
-    public static void ShowAd_FullAdx(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener) {
+    public static void ShowAd_FullAdx(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, CustomProgressDialog customProgressDialog) {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
             Constant.Front_Counter++;
-            final CustomProgressDialog customProgressDialog = new CustomProgressDialog(source_class, "Showing Ad...");
-            customProgressDialog.setCancelable(false);
-            customProgressDialog.show();
             AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
             AdManagerInterstitialAd.load(source_class, new AppPreference(source_class).get_Admob_Interstitial_Id1(), adRequest, new AdManagerInterstitialAdLoadCallback() {
                 @Override
