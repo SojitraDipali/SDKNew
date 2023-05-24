@@ -40,7 +40,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
             return datalist.size();
         }
 
-        static class SliderAdapterVH extends ViewHolder {
+        static class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
 
             View itemView;
             ImageView img_qureka;
