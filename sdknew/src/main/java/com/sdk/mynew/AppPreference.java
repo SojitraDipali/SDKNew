@@ -21,6 +21,7 @@ public class AppPreference {
 
     String Ad_Status = "Ad_Status";
     String Adstyle = "Adstyle";
+    String AdstyleNative = "AdstyleNative";
     String Ad_Flag = "Ad_Flag";
     String Qureka_Flag = "Qureka_Flag";
     String Slider_Qureka = "Slider_Qureka";
@@ -182,6 +183,7 @@ public class AppPreference {
         set_Ad_Flag(jsonArray.getJSONObject(0).optString("Adflag"));
         set_Ad_Time_Interval(jsonArray.getJSONObject(0).optString("Adtime"));
         set_Adstyle(jsonArray.getJSONObject(0).optString("Adstyle"));
+        set_AdstyleNative(jsonArray.getJSONObject(0).optString("AdstyleNative", "fb"));
         set_Ad_Status(jsonArray.getJSONObject(0).optString("Adstatus"));
         set_Account(jsonArray.getJSONObject(0).optString("account"));
         set_Privacy_Policy(jsonArray.getJSONObject(0).optString("pp"));
@@ -378,6 +380,14 @@ public class AppPreference {
 
     public void set_Adstyle(String str) {
         this.prefEditor.putString(this.Adstyle, str).commit();
+    }
+
+     public String get_AdstyleNative() {
+        return this.appSharedPref.getString(this.AdstyleNative, "");
+    }
+
+    public void set_AdstyleNative(String str) {
+        this.prefEditor.putString(this.AdstyleNative, str).commit();
     }
 
     public String get_Slider_Qureka() {

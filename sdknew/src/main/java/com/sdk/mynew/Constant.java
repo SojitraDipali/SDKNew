@@ -8,8 +8,6 @@ import android.widget.Toast;
 
 import androidx.browser.customtabs.CustomTabsIntent;
 
-import com.sdk.mynew.R;
-
 public class Constant {
     public static int Alt_Cnt_Inter = 1;
     public static int Alt_Cnt_Reward_Inter = 1;

@@ -1,16 +1,22 @@
 package com.sdk.mynew;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.ads.NativeAdView;
+import com.facebook.ads.NativeAdViewAttributes;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.nativead.NativeAd;
 
@@ -50,7 +56,7 @@ public class Native_Ads_Preload_1 {
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth);
     }
 
-    public void addNativeAd(ViewGroup viewGroup, boolean isList) {
+    public void addNativeAd(FrameLayout viewGroup, boolean isList) {
         new Native_Ads_Static(context).Native_Ads(viewGroup);
         String type = isList ? new AppPreference(context).getNativeTypeList() : new AppPreference(context).getNativeTypeOther();
         switch (type) {
@@ -85,78 +91,112 @@ public class Native_Ads_Preload_1 {
         }
     }
 
+    private void inflateAd(Context context, com.facebook.ads.NativeAd nativeAd, FrameLayout viewGroup, int height) {
 
-    public void Native_Banner_Ads(final ViewGroup viewGroup) {
-        NativeAd nativeAd = Native_Ads_Load.getNextNativeAd();
+        AppPreference preference = new AppPreference(context);
+        int textColor = Color.parseColor("#" + preference.getTextColor());
+        int backColor = Color.parseColor("#" + preference.getBackColor());
+        int btnColor = Color.parseColor("#" +  preference.getAdbtcolor());
+
+        NativeAdViewAttributes viewAttributes = new NativeAdViewAttributes(context)
+                .setBackgroundColor(backColor)
+                .setTitleTextColor(textColor)
+                .setDescriptionTextColor(textColor)
+                .setButtonColor(btnColor)
+                .setButtonTextColor(Color.WHITE);
+
+        View adView = NativeAdView.render(context, nativeAd, viewAttributes);
+        viewGroup.removeAllViews();
+        viewGroup.addView(adView, new ViewGroup.LayoutParams(MATCH_PARENT, height));
+    }
+
+
+    public void Native_Banner_Ads(final FrameLayout viewGroup) {
+        Object nativeAd = Native_Ads_Load.getNextNativeAd();
         if (nativeAd != null) {
-            View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp, viewGroup, false);
-            final TemplateView templateView = inflate.findViewById(R.id.my_template_small);
-            inflate.findViewById(R.id.my_template_small).setVisibility(View.GONE);
-            templateView.setVisibility(View.GONE);
-            NativeTemplateStyle build = new NativeTemplateStyle.Builder().build();
-            templateView.setVisibility(View.VISIBLE);
-            templateView.setStyles(build);
-            templateView.setNativeAd(nativeAd);
-            viewGroup.setVisibility(View.VISIBLE);
-            viewGroup.removeAllViews();
-            viewGroup.addView(inflate);
-
+            if (nativeAd instanceof NativeAd) {
+                View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp, viewGroup, false);
+                final TemplateView templateView = inflate.findViewById(R.id.my_template_small);
+                inflate.findViewById(R.id.my_template_small).setVisibility(View.GONE);
+                templateView.setVisibility(View.GONE);
+                NativeTemplateStyle build = new NativeTemplateStyle.Builder().build();
+                templateView.setVisibility(View.VISIBLE);
+                templateView.setStyles(build);
+                templateView.setNativeAd((NativeAd) nativeAd);
+                viewGroup.setVisibility(View.VISIBLE);
+                viewGroup.removeAllViews();
+                viewGroup.addView(inflate);
+            }  else if (nativeAd instanceof com.facebook.ads.NativeAd){
+                inflateAd(context, (com.facebook.ads.NativeAd) nativeAd, viewGroup, 300);
+            }
         } else {
             Qureka_Predchamp_Native_Banner(viewGroup);
         }
     }
 
-    public void Native_Small_Ads(final ViewGroup viewGroup) {
-        NativeAd nativeAd = Native_Ads_Load.getNextNativeAd();
+    public void Native_Small_Ads(final FrameLayout viewGroup) {
+        Object nativeAd = Native_Ads_Load.getNextNativeAd();
         if (nativeAd != null) {
-            View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp1, viewGroup, false);
-            final TemplateView templateView = inflate.findViewById(R.id.my_template_small);
-            inflate.findViewById(R.id.my_template_small).setVisibility(View.GONE);
-            templateView.setVisibility(View.GONE);
-            NativeTemplateStyle build = new NativeTemplateStyle.Builder().build();
-            templateView.setVisibility(View.VISIBLE);
-            templateView.setStyles(build);
-            templateView.setNativeAd(nativeAd);
-            viewGroup.setVisibility(View.VISIBLE);
-            viewGroup.removeAllViews();
-            viewGroup.addView(inflate);
-
+            if (nativeAd instanceof NativeAd) {
+                View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp1, viewGroup, false);
+                final TemplateView templateView = inflate.findViewById(R.id.my_template_small);
+                inflate.findViewById(R.id.my_template_small).setVisibility(View.GONE);
+                templateView.setVisibility(View.GONE);
+                NativeTemplateStyle build = new NativeTemplateStyle.Builder().build();
+                templateView.setVisibility(View.VISIBLE);
+                templateView.setStyles(build);
+                templateView.setNativeAd((NativeAd) nativeAd);
+                viewGroup.setVisibility(View.VISIBLE);
+                viewGroup.removeAllViews();
+                viewGroup.addView(inflate);
+            }else if (nativeAd instanceof com.facebook.ads.NativeAd){
+                inflateAd(context, (com.facebook.ads.NativeAd) nativeAd, viewGroup, 300);
+            }
         } else {
             Qureka_Predchamp_Native_Banner(viewGroup);
         }
     }
 
-    public void Native_Medium_Size(final ViewGroup viewGroup) {
-        NativeAd nativeAd = Native_Ads_Load.getNextNativeAd();
+    public void Native_Medium_Size(final FrameLayout viewGroup) {
+        Object nativeAd = Native_Ads_Load.getNextNativeAd();
         if (nativeAd != null) {
-            View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp1, viewGroup, false);
-            final TemplateView templateView = inflate.findViewById(R.id.my_template_large);
-            inflate.findViewById(R.id.my_template_small).setVisibility(View.GONE);
-            templateView.setVisibility(View.GONE);
-            NativeTemplateStyle build = new NativeTemplateStyle.Builder().build();
-            templateView.setVisibility(View.VISIBLE);
-            templateView.setStyles(build);
-            templateView.setNativeAd(nativeAd);
-            viewGroup.removeAllViews();
-            viewGroup.addView(inflate);
-        } else {
+            if (nativeAd instanceof NativeAd) {
+                View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp1, viewGroup, false);
+                final TemplateView templateView = inflate.findViewById(R.id.my_template_large);
+                inflate.findViewById(R.id.my_template_small).setVisibility(View.GONE);
+                templateView.setVisibility(View.GONE);
+                NativeTemplateStyle build = new NativeTemplateStyle.Builder().build();
+                templateView.setVisibility(View.VISIBLE);
+                templateView.setStyles(build);
+                templateView.setNativeAd((NativeAd) nativeAd);
+                viewGroup.removeAllViews();
+                viewGroup.addView(inflate);
+            } else if (nativeAd instanceof com.facebook.ads.NativeAd){
+                inflateAd(context, (com.facebook.ads.NativeAd) nativeAd, viewGroup, 400);
+            }
+        }
+        else {
             Qureka_Predchamp_Native(viewGroup);
         }
     }
 
-    public void Native_Large_Size(final ViewGroup viewGroup) {
-        NativeAd nativeAd = Native_Ads_Load.getNextNativeAd();
+    public void Native_Large_Size(final FrameLayout viewGroup) {
+        Object nativeAd = Native_Ads_Load.getNextNativeAd();
         if (nativeAd != null) {
-            View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp, viewGroup, false);
-            final TemplateView templateView = inflate.findViewById(R.id.my_template_large);
-            inflate.findViewById(R.id.my_template_small).setVisibility(View.GONE);
-            templateView.setVisibility(View.GONE);
-            NativeTemplateStyle build = new NativeTemplateStyle.Builder().build();
-            templateView.setVisibility(View.VISIBLE);
-            templateView.setStyles(build);
-            templateView.setNativeAd(nativeAd);
-            viewGroup.removeAllViews();
-            viewGroup.addView(inflate);
+            if (nativeAd instanceof NativeAd) {
+                View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp, viewGroup, false);
+                final TemplateView templateView = inflate.findViewById(R.id.my_template_large);
+                inflate.findViewById(R.id.my_template_small).setVisibility(View.GONE);
+                templateView.setVisibility(View.GONE);
+                NativeTemplateStyle build = new NativeTemplateStyle.Builder().build();
+                templateView.setVisibility(View.VISIBLE);
+                templateView.setStyles(build);
+                templateView.setNativeAd((NativeAd) nativeAd);
+                viewGroup.removeAllViews();
+                viewGroup.addView(inflate);
+            } else if (nativeAd instanceof com.facebook.ads.NativeAd){
+                inflateAd(context, (com.facebook.ads.NativeAd) nativeAd, viewGroup, 600);
+            }
         } else {
             Qureka_Predchamp_Native(viewGroup);
         }

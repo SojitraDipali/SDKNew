@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.sdk.mynew.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
@@ -41,7 +40,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
             return datalist.size();
         }
 
-        static class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
+        static class SliderAdapterVH extends ViewHolder {
 
             View itemView;
             ImageView img_qureka;

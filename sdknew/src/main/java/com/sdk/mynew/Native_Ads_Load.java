@@ -6,6 +6,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.NativeAdBase;
+import com.facebook.ads.NativeAdListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -18,19 +22,35 @@ import java.util.ArrayList;
 
 
 public class Native_Ads_Load {
+    private static final String TAG = "fbAd";
     public static Context context;
     public static AppPreference preference;
     public static ArrayList<NativeAd> mNativeAdsGHome;
+    private static com.facebook.ads.NativeAd fbNativeAd;
     public static ArrayList<String> mNativeAdsId;
     int native_ads_count = 0;
     static int adCounter = -1;
 
-    public static NativeAd getNextNativeAd() {
-        if (mNativeAdsGHome != null && mNativeAdsGHome.size() > 0) {
-            return mNativeAdsGHome.get(getCounter());
-        } else {
-            return null;
+    public static Object getNextNativeAd() {
+
+        if (preference.get_AdstyleNative().equalsIgnoreCase("Normal")) {
+            if (mNativeAdsGHome != null && mNativeAdsGHome.size() > 0) {
+                return mNativeAdsGHome.get(getCounter());
+            } else if (fbNativeAd != null) {
+                return fbNativeAd;
+            } else
+                return null;
+        } else if (preference.get_AdstyleNative().equalsIgnoreCase("fb")) {
+            if (fbNativeAd != null) {
+                return fbNativeAd;
+            } else if (mNativeAdsGHome != null && mNativeAdsGHome.size() > 0) {
+                return mNativeAdsGHome.get(getCounter());
+            } else
+                return null;
         }
+        else return null;
+
+
     }
 
     public static int getCounter() {
@@ -60,10 +80,64 @@ public class Native_Ads_Load {
         }
 
         native_ads_count = mNativeAdsId.size();
-        loadGNativeIntermediate(0);
+        loadAds(activity);
     }
 
-    public void loadGNativeIntermediate(int adCount) {
+    public void loadAds(final Context activity) {
+        if (preference.get_AdstyleNative().equalsIgnoreCase("Normal")) {
+            loadGNativeIntermediate(activity, 0, true);
+        } else if (preference.get_AdstyleNative().equalsIgnoreCase("fb")) {
+            loadFbAd(activity, true);
+        }
+    }
+
+    public void loadFbAd(Context activity, boolean fromMainFunction){
+        Log.d(TAG, preference.get_Facebook_Native());
+        final com.facebook.ads.NativeAd nativeAd = new com.facebook.ads.NativeAd(activity, preference.get_Facebook_Native());
+
+        NativeAdListener nativeAdListener = new NativeAdListener() {
+
+            @Override
+            public void onMediaDownloaded(Ad ad) {
+                // Native ad finished downloading all assets
+                Log.e(TAG, "Native ad finished downloading all assets.");
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                if(fromMainFunction)
+                    loadGNativeIntermediate(activity, 0, false);
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+                // Native ad is loaded and ready to be displayed
+                Log.d(TAG, "Native ad is loaded and ready to be displayed!");
+                fbNativeAd = nativeAd;
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+                // Native ad clicked
+                Log.d(TAG, "Native ad clicked!");
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+                // Native ad impression
+                Log.d(TAG, "Native ad impression logged!");
+            }
+        };
+
+        // Request an ad
+        nativeAd.loadAd(
+                nativeAd.buildLoadAdConfig()
+                        .withAdListener(nativeAdListener)
+                        .withMediaCacheFlag(NativeAdBase.MediaCacheFlag.ALL)
+                        .build());
+    }
+
+    public void loadGNativeIntermediate(Context activity, int adCount, boolean fromMainFunction) {
         if (adCount == 0) {
             mNativeAdsGHome = new ArrayList<>();
         }
@@ -85,7 +159,7 @@ public class Native_Ads_Load {
             int nextConunt = adCount + 1;
             if (nextConunt < native_ads_count) {
                 Log.e("Ads ", "NativeAd nextConunt: " + nextConunt);
-                loadGNativeIntermediate(nextConunt);
+                loadGNativeIntermediate(activity, nextConunt, fromMainFunction);
             }
 
             if (nextConunt == native_ads_count) {
@@ -108,6 +182,9 @@ public class Native_Ads_Load {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError adError) {
                 Log.e("Ads ", "NativeAd onAdFailedToLoad: " + adError.getMessage());
+                if(mNativeAdsGHome.size() == 0 && fromMainFunction){
+                    loadFbAd(activity, false);
+                }
             }
         }).build();
 

@@ -8,7 +8,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.sdk.mynew.R;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;

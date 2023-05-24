@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -119,7 +119,7 @@ public class CheckInstallActivity {
         });
     }
 
-    public static void Native_Banner_Count(Activity activity, ViewGroup viewGroup) {
+    public static void Native_Banner_Count(Activity activity, FrameLayout viewGroup) {
         AppPreference preference = new AppPreference(activity);
         int nativecount = Integer.parseInt(preference.getNativecount());
         if (Constant.NativeCountIncr == nativecount) {
@@ -133,7 +133,7 @@ public class CheckInstallActivity {
         }
     }
 
-    public static void Native_Large_Count(Activity activity, ViewGroup viewGroup) {
+    public static void Native_Large_Count(Activity activity, FrameLayout viewGroup, boolean isList) {
         AppPreference preference = new AppPreference(activity);
         int nativecount = Integer.parseInt(preference.getNativecount());
         if (Constant.NativeCountIncr == nativecount) {
@@ -141,7 +141,7 @@ public class CheckInstallActivity {
         }
         if (Constant.NativeCountIncr % nativecount == 0) {
             Constant.NativeCountIncr++;
-            Native_Ads_Preload_1.getInstance(activity).addNativeAd(viewGroup, false);
+            Native_Ads_Preload_1.getInstance(activity).addNativeAd(viewGroup, isList);
         } else {
             Constant.NativeCountIncr++;
         }
