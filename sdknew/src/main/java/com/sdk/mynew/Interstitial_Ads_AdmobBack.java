@@ -24,6 +24,7 @@ public class Interstitial_Ads_AdmobBack {
             if (Constant.Back_Counter % Integer.parseInt(appPreference.getBackclick()) == 0) {
                 if (appPreference.getBackflag().equals("on")) {
                     AppPreference preference = new AppPreference(source_class);
+                    Constant.Back_Counter++;
                     new Interstitial_Ads().callad(preference, source_class, adCloseListener);
 
 //                    if (appPreference.get_Ad_Flag().equals("admob")) {
