@@ -34,6 +34,7 @@ public class AppPreference {
     String Account = "Account";
     String Privacy_Policy = "Privacy_Policy";
     String wsaver = "wsaver";
+    String backclickadstyle = "backclickadstyle";
 
     String Splash_Interstitial_Id = "Splash_Interstitial_Id";
 
@@ -105,6 +106,14 @@ public class AppPreference {
 
     public void setMedium(String vpnurl) {
         this.prefEditor.putString(this.medium, vpnurl).commit();
+    }
+
+    public String getBackclickadstyle() {
+        return this.appSharedPref.getString(this.backclickadstyle, "");
+    }
+
+    public void setBackclickadstyle(String backclickadstyle) {
+        this.prefEditor.putString(this.backclickadstyle, backclickadstyle).commit();
     }
 
     public String getNativecount() {
@@ -231,6 +240,7 @@ public class AppPreference {
         setMedium(jsonArray.getJSONObject(0).optString("medium"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
         setNativecount(jsonArray.getJSONObject(0).optString("nativecount", "2"));
+        setBackclickadstyle(jsonArray.getJSONObject(0).optString("backclickadstyle", "admob"));
     }
 
     public String getWsaver() {

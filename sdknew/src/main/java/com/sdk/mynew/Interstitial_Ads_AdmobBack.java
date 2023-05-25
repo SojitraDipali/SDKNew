@@ -22,20 +22,15 @@ public class Interstitial_Ads_AdmobBack {
         AppPreference appPreference = new AppPreference(source_class);
         if (appPreference.getFullflag().equalsIgnoreCase("on")) {
             if (Constant.Back_Counter % Integer.parseInt(appPreference.getBackclick()) == 0) {
-                if (appPreference.getBackflag().equals("on")) {
-                    AppPreference preference = new AppPreference(source_class);
-                    Constant.Back_Counter++;
-                    new Interstitial_Ads().callad(preference, source_class, adCloseListener);
-
-//                    if (appPreference.get_Ad_Flag().equals("admob")) {
-//                        ShowAd_FullAdmob(source_class, adCloseListener);
-//                    } else {
-//                        ShowAd_FullAdx(source_class, adCloseListener);
-//                    }
-                } else {
-                    if (adCloseListener != null) {
-                        adCloseListener.onAdClosed();
+                if (appPreference.getBackclickadstyle().equalsIgnoreCase("admob")) {
+                    if (appPreference.get_Ad_Flag().equals("admob")) {
+                        ShowAd_FullAdmob(source_class, adCloseListener);
+                    } else {
+                        ShowAd_FullAdx(source_class, adCloseListener);
                     }
+                } else {
+                    Constant.Back_Counter++;
+                    new Interstitial_Ads().callad(appPreference, source_class, adCloseListener);
                 }
             } else {
                 Constant.Back_Counter++;
