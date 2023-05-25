@@ -106,6 +106,7 @@ public class AppPreference {
     public void setMedium(String vpnurl) {
         this.prefEditor.putString(this.medium, vpnurl).commit();
     }
+
     public String getNativecount() {
         return this.appSharedPref.getString(this.nativecount, "");
     }
@@ -113,6 +114,7 @@ public class AppPreference {
     public void setNativecount(String str) {
         this.prefEditor.putString(this.nativecount, str).commit();
     }
+
     public String getPage() {
         return this.appSharedPref.getString(this.page, "");
     }
@@ -238,6 +240,7 @@ public class AppPreference {
     public void setWsaver(String wsaver) {
         this.prefEditor.putString(this.wsaver, wsaver).commit();
     }
+
     public String getFullflag() {
         return this.appSharedPref.getString(this.fullflag, "");
     }
@@ -382,7 +385,7 @@ public class AppPreference {
         this.prefEditor.putString(this.Adstyle, str).commit();
     }
 
-     public String get_AdstyleNative() {
+    public String get_AdstyleNative() {
         return this.appSharedPref.getString(this.AdstyleNative, "");
     }
 

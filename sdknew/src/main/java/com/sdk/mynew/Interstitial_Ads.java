@@ -9,7 +9,7 @@ public class Interstitial_Ads {
         if (preference.getFullflag().equalsIgnoreCase("on")) {
             if (!preference.get_Click_Flag().equalsIgnoreCase("on")) {
                 if (Constant.IS_TIME_INTERVAL) {
-                    callad(preference, source_class,adCloseListener);
+                    callad(preference, source_class, adCloseListener);
                 } else {
                     if (adCloseListener != null) {
                         adCloseListener.onAdClosed();

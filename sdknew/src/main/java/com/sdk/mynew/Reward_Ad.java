@@ -40,7 +40,7 @@ public class Reward_Ad {
     private void Show_Reward_Ads(Activity source_class, Dialog dialog) {
         if (new AppPreference(source_class).get_Ad_Status().equalsIgnoreCase("on")) {
             if (new AppPreference(source_class).get_Adstyle().equalsIgnoreCase("Normal")) {
-                    ShowAdReward_Admob_Adx(source_class, dialog);
+                ShowAdReward_Admob_Adx(source_class, dialog);
             }
         }
     }

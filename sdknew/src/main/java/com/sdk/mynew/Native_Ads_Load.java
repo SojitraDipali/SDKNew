@@ -47,8 +47,7 @@ public class Native_Ads_Load {
                 return mNativeAdsGHome.get(getCounter());
             } else
                 return null;
-        }
-        else return null;
+        } else return null;
 
 
     }
@@ -91,7 +90,7 @@ public class Native_Ads_Load {
         }
     }
 
-    public void loadFbAd(Context activity, boolean fromMainFunction){
+    public void loadFbAd(Context activity, boolean fromMainFunction) {
         Log.d(TAG, preference.get_Facebook_Native());
         final com.facebook.ads.NativeAd nativeAd = new com.facebook.ads.NativeAd(activity, preference.get_Facebook_Native());
 
@@ -105,7 +104,7 @@ public class Native_Ads_Load {
 
             @Override
             public void onError(Ad ad, AdError adError) {
-                if(fromMainFunction)
+                if (fromMainFunction)
                     loadGNativeIntermediate(activity, 0, false);
             }
 
@@ -182,7 +181,7 @@ public class Native_Ads_Load {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError adError) {
                 Log.e("Ads ", "NativeAd onAdFailedToLoad: " + adError.getMessage());
-                if(mNativeAdsGHome.size() == 0 && fromMainFunction){
+                if (mNativeAdsGHome.size() == 0 && fromMainFunction) {
                     loadFbAd(activity, false);
                 }
             }
