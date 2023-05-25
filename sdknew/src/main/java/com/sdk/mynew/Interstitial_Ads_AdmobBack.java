@@ -23,11 +23,14 @@ public class Interstitial_Ads_AdmobBack {
         if (appPreference.getFullflag().equalsIgnoreCase("on")) {
             if (Constant.Back_Counter % Integer.parseInt(appPreference.getBackclick()) == 0) {
                 if (appPreference.getBackflag().equals("on")) {
-                    if (appPreference.get_Ad_Flag().equals("admob")) {
-                        ShowAd_FullAdmob(source_class, adCloseListener);
-                    } else {
-                        ShowAd_FullAdx(source_class, adCloseListener);
-                    }
+                    AppPreference preference = new AppPreference(source_class);
+                    new Interstitial_Ads().callad(preference, source_class, adCloseListener);
+
+//                    if (appPreference.get_Ad_Flag().equals("admob")) {
+//                        ShowAd_FullAdmob(source_class, adCloseListener);
+//                    } else {
+//                        ShowAd_FullAdx(source_class, adCloseListener);
+//                    }
                 } else {
                     if (adCloseListener != null) {
                         adCloseListener.onAdClosed();
