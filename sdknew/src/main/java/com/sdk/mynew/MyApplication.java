@@ -20,8 +20,10 @@ public class MyApplication extends MultiDexApplication {
                     if (new AppPreference(instance).getOpenflag().equalsIgnoreCase("on")) {
                         new AppOpenManager(instance);
                     }
-                    if (new AppPreference(instance).getNativeflag().equalsIgnoreCase("on")) {
-                        new Native_Ads_Load(instance);
+                    if (new AppPreference(instance).get_Ad_Status().equalsIgnoreCase("on")) {
+                        if (new AppPreference(instance).getNativeflag().equalsIgnoreCase("on")) {
+                            new Native_Ads_Load(instance);
+                        }
                     }
                 });
     }

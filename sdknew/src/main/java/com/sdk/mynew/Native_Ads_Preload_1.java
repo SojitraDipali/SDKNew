@@ -112,6 +112,7 @@ public class Native_Ads_Preload_1 {
 
 
     public void Native_Banner_Ads(final FrameLayout viewGroup) {
+        new Native_Ads_Static(context).Native_Banner_Ads(viewGroup);
         Object nativeAd = Native_Ads_Load.getNextNativeAd();
         if (nativeAd != null) {
             if (nativeAd instanceof NativeAd) {
@@ -135,6 +136,7 @@ public class Native_Ads_Preload_1 {
     }
 
     public void Native_Small_Ads(final FrameLayout viewGroup) {
+        new Native_Ads_Static(context).Adaptive_Banner(viewGroup);
         Object nativeAd = Native_Ads_Load.getNextNativeAd();
         if (nativeAd != null) {
             if (nativeAd instanceof NativeAd) {
@@ -158,6 +160,7 @@ public class Native_Ads_Preload_1 {
     }
 
     public void Native_Medium_Size(final FrameLayout viewGroup) {
+        new Native_Ads_Static(context).Native_Banner_Ads1(viewGroup);
         Object nativeAd = Native_Ads_Load.getNextNativeAd();
         if (nativeAd != null) {
             if (nativeAd instanceof NativeAd) {
@@ -180,6 +183,7 @@ public class Native_Ads_Preload_1 {
     }
 
     public void Native_Large_Size(final FrameLayout viewGroup) {
+        new Native_Ads_Static(context).Native_Ads(viewGroup);
         Object nativeAd = Native_Ads_Load.getNextNativeAd();
         if (nativeAd != null) {
             if (nativeAd instanceof NativeAd) {

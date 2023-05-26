@@ -194,7 +194,6 @@ public class AppPreference {
         set_Ad_Flag(jsonArray.getJSONObject(0).optString("Adflag"));
         set_Ad_Time_Interval(jsonArray.getJSONObject(0).optString("Adtime"));
         set_Adstyle(jsonArray.getJSONObject(0).optString("Adstyle"));
-        set_AdstyleNative(jsonArray.getJSONObject(0).optString("AdstyleNative", "fb"));
         set_Ad_Status(jsonArray.getJSONObject(0).optString("Adstatus"));
         set_Account(jsonArray.getJSONObject(0).optString("account"));
         set_Privacy_Policy(jsonArray.getJSONObject(0).optString("pp"));
@@ -208,7 +207,6 @@ public class AppPreference {
         set_Admob_Native_Id2(jsonArray.getJSONObject(0).optString("admob-native2"));
         set_Admob_Native_Id3(jsonArray.getJSONObject(0).optString("admob-native3"));
         set_Admob_Banner_Id1(jsonArray.getJSONObject(0).optString("admob-banner1"));
-        setPage(jsonArray.getJSONObject(0).optString("page"));
         set_Admob_Banner_Id2(jsonArray.getJSONObject(0).optString("admob-banner2"));
         set_Admob_Banner_Id3(jsonArray.getJSONObject(0).optString("admob-banner3"));
         set_Admob_OpenApp_Id1(jsonArray.getJSONObject(0).optString("admob-open1"));
@@ -217,10 +215,10 @@ public class AppPreference {
         set_Click_Flag(jsonArray.getJSONObject(0).optString("clickflag"));
         setScreen(jsonArray.getJSONObject(0).optString("screen"));
         set_Click_Count(jsonArray.getJSONObject(0).optString("click"));
-        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick"));
-        setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
+        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick","4"));
         setGclid(jsonArray.getJSONObject(0).optString("gclid", "off"));
         setGclidValue(jsonArray.getJSONObject(0).optString("gclidValue", "gclid"));
+        setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
         setBannerflag(jsonArray.getJSONObject(0).optString("banner", "on"));
         setOpenflag(jsonArray.getJSONObject(0).optString("open", "on"));
         setFullflag(jsonArray.getJSONObject(0).optString("full", "on"));
@@ -230,17 +228,19 @@ public class AppPreference {
         set_Facebook_Native(jsonArray.getJSONObject(0).optString("fb-native"));
         set_Facebook_Banner(jsonArray.getJSONObject(0).optString("fb-banner"));
         setAdbtcolor(jsonArray.getJSONObject(0).optString("adbtclr"));
+        setPage(jsonArray.getJSONObject(0).optString("page"));
+        setMedium(jsonArray.getJSONObject(0).optString("medium"));
         setBackflag(jsonArray.getJSONObject(0).optString("backflag"));
         setBackclick(jsonArray.getJSONObject(0).optString("backclick"));
         setNativeTypeList(jsonArray.getJSONObject(0).optString("native_type_list"));
-        setWsaver(jsonArray.getJSONObject(0).optString("wsaver", "on"));
         setNativeTypeOther(jsonArray.getJSONObject(0).optString("native_type_other"));
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
-        setMedium(jsonArray.getJSONObject(0).optString("medium"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
+        setWsaver(jsonArray.getJSONObject(0).optString("wsaver", "on"));
         setNativecount(jsonArray.getJSONObject(0).optString("nativecount", "2"));
         setBackclickadstyle(jsonArray.getJSONObject(0).optString("backclickadstyle", "admob"));
+        set_AdstyleNative(jsonArray.getJSONObject(0).optString("AdstyleNative", "fb"));
     }
 
     public String getWsaver() {
