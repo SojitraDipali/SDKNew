@@ -57,7 +57,6 @@ public class Native_Ads_Preload_1 {
     }
 
     public void addNativeAd(FrameLayout viewGroup, boolean isList) {
-        new Native_Ads_Static(context).Native_Ads(viewGroup);
         String type = isList ? new AppPreference(context).getNativeTypeList() : new AppPreference(context).getNativeTypeOther();
         switch (type) {
             case "banner":
