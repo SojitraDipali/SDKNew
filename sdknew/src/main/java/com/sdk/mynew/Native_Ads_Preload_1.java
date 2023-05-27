@@ -28,9 +28,6 @@ public class Native_Ads_Preload_1 {
     public static AppPreference preference;
     public static Native_Ads_Preload_1 mInstance;
 
-    NativeAd nativeBannerAd1;
-
-
     public Native_Ads_Preload_1(Context activity) {
         context = activity;
         preference = new AppPreference(activity);

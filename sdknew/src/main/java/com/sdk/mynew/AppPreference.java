@@ -22,6 +22,7 @@ public class AppPreference {
     String Ad_Status = "Ad_Status";
     String Adstyle = "Adstyle";
     String AdstyleNative = "AdstyleNative";
+    String AdstyleBanner = "AdstyleBanner";
     String Ad_Flag = "Ad_Flag";
     String Qureka_Flag = "Qureka_Flag";
     String Slider_Qureka = "Slider_Qureka";
@@ -80,6 +81,7 @@ public class AppPreference {
     String bannerflag = "banner";
     String fullflag = "fullflag";
     String openflag = "openflag";
+    String fbrewardid = "fbrewardid";
 
     public AppPreference(Context context) {
         this.appSharedPref = context.getSharedPreferences(this.USER_PREFS, 0);
@@ -106,6 +108,14 @@ public class AppPreference {
 
     public void setMedium(String vpnurl) {
         this.prefEditor.putString(this.medium, vpnurl).commit();
+    }
+
+    public String getFbrewardid() {
+        return this.appSharedPref.getString(this.fbrewardid, "");
+    }
+
+    public void setFbrewardid(String fbrewardid) {
+        this.prefEditor.putString(this.fbrewardid, fbrewardid).commit();
     }
 
     public String getBackclickadstyle() {
@@ -215,7 +225,7 @@ public class AppPreference {
         set_Click_Flag(jsonArray.getJSONObject(0).optString("clickflag"));
         setScreen(jsonArray.getJSONObject(0).optString("screen"));
         set_Click_Count(jsonArray.getJSONObject(0).optString("click"));
-        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick","4"));
+        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick", "4"));
         setGclid(jsonArray.getJSONObject(0).optString("gclid", "off"));
         setGclidValue(jsonArray.getJSONObject(0).optString("gclidValue", "gclid"));
         setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
@@ -240,7 +250,9 @@ public class AppPreference {
         setWsaver(jsonArray.getJSONObject(0).optString("wsaver", "on"));
         setNativecount(jsonArray.getJSONObject(0).optString("nativecount", "2"));
         setBackclickadstyle(jsonArray.getJSONObject(0).optString("backclickadstyle", "admob"));
-        set_AdstyleNative(jsonArray.getJSONObject(0).optString("AdstyleNative", "fb"));
+        set_AdstyleNative(jsonArray.getJSONObject(0).optString("AdstyleNative", "admob"));
+        setAdstyleBanner(jsonArray.getJSONObject(0).optString("AdstyleBanner", "admob"));
+        setFbrewardid(jsonArray.getJSONObject(0).optString("fbrewardid"));
     }
 
     public String getWsaver() {
@@ -393,6 +405,14 @@ public class AppPreference {
 
     public void set_Adstyle(String str) {
         this.prefEditor.putString(this.Adstyle, str).commit();
+    }
+
+    public String getAdstyleBanner() {
+        return this.appSharedPref.getString(this.AdstyleBanner, "");
+    }
+
+    public void setAdstyleBanner(String AdstyleBanner) {
+        this.prefEditor.putString(this.AdstyleBanner, AdstyleBanner).commit();
     }
 
     public String get_AdstyleNative() {

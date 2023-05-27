@@ -1,10 +1,8 @@
 package my.sdknewdemo.sdk.sdk;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import my.sdknewdemo.sdk.sdk.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
