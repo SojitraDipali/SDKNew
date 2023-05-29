@@ -252,7 +252,8 @@ public class AppPreference {
         setBackclickadstyle(jsonArray.getJSONObject(0).optString("backclickadstyle", "admob"));
         set_AdstyleNative(jsonArray.getJSONObject(0).optString("AdstyleNative", "admob"));
         setAdstyleBanner(jsonArray.getJSONObject(0).optString("AdstyleBanner", "admob"));
-        setFbrewardid(jsonArray.getJSONObject(0).optString("fbrewardid"));
+        setFbrewardid(jsonArray.getJSONObject(0).optString("fb-reward"));
+        set_Admob_Rewarded_Id(jsonArray.getJSONObject(0).optString("admob-reward"));
     }
 
     public String getWsaver() {
