@@ -127,7 +127,7 @@ public class CheckInstallActivity {
         }
         if (Constant.NativeCountIncr % nativecount == 0) {
             Constant.NativeCountIncr++;
-            Native_Ads_Preload_1.getInstance(activity).Native_Banner_Ads(viewGroup);
+            Native_Ads_Preload_1.getInstance(activity).Native_Banner_Ads(activity, viewGroup);
         } else {
             Constant.NativeCountIncr++;
         }

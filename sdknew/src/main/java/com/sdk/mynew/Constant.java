@@ -80,8 +80,12 @@ public class Constant {
 
     public static void Open_Qureka(Context context) {
         String URL = new AppPreference(context).get_Qureka_Link();
-        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        CustomTabsIntent customTabsIntent = builder.build();
-        customTabsIntent.launchUrl(context, Uri.parse(URL));
+        try {
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(context, Uri.parse(URL));
+        } catch (Exception e) {
+
+        }
     }
 }
