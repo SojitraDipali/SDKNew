@@ -1,5 +1,6 @@
 package com.sdk.mynew;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,15 +25,15 @@ import java.util.ArrayList;
 public class Native_Ads_Load {
     private static final String TAG = "fbAd";
     public static Context context;
-    public static AppPreference preference;
+
     public static ArrayList<NativeAd> mNativeAdsGHome;
     private static com.facebook.ads.NativeAd fbNativeAd;
     public static ArrayList<String> mNativeAdsId;
     int native_ads_count = 0;
     static int adCounter = -1;
 
-    public static Object getNextNativeAd() {
-
+    public static Object getNextNativeAd(Activity activity) {
+        AppPreference preference = new AppPreference(activity);
         if (preference.get_AdstyleNative().equalsIgnoreCase("Normal")) {
             if (mNativeAdsGHome != null && mNativeAdsGHome.size() > 0) {
                 return mNativeAdsGHome.get(getCounter());
@@ -67,7 +68,7 @@ public class Native_Ads_Load {
     public Native_Ads_Load(Context activity) {
         context = activity;
         mNativeAdsId = new ArrayList<>();
-        preference = new AppPreference(activity);
+        AppPreference preference = new AppPreference(activity);
         if (!preference.get_Admob_Native_Id1().isEmpty()) {
             mNativeAdsId.add(preference.get_Admob_Native_Id1());
         }
@@ -83,6 +84,7 @@ public class Native_Ads_Load {
     }
 
     public void loadAds(final Context activity) {
+        AppPreference preference = new AppPreference(activity);
         if (preference.get_AdstyleNative().equalsIgnoreCase("Normal")) {
             loadGNativeIntermediate(activity, 0, true);
         } else if (preference.get_AdstyleNative().equalsIgnoreCase("fb")) {
@@ -91,6 +93,7 @@ public class Native_Ads_Load {
     }
 
     public void loadFbAd(Context activity, boolean fromMainFunction) {
+        AppPreference preference = new AppPreference(activity);
         Log.d(TAG, preference.get_Facebook_Native());
         final com.facebook.ads.NativeAd nativeAd = new com.facebook.ads.NativeAd(activity, preference.get_Facebook_Native());
 
@@ -137,6 +140,7 @@ public class Native_Ads_Load {
     }
 
     public void loadGNativeIntermediate(Context activity, int adCount, boolean fromMainFunction) {
+        AppPreference preference = new AppPreference(activity);
         if (adCount == 0) {
             mNativeAdsGHome = new ArrayList<>();
         }

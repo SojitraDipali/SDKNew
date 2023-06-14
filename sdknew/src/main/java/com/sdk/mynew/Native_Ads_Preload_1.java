@@ -24,17 +24,17 @@ import java.util.Random;
 
 
 public class Native_Ads_Preload_1 {
-    public static Context context;
+    public static Activity context;
     public static AppPreference preference;
     public static Native_Ads_Preload_1 mInstance;
 
-    public Native_Ads_Preload_1(Context activity) {
+    public Native_Ads_Preload_1(Activity activity) {
         context = activity;
         preference = new AppPreference(activity);
 
     }
 
-    public static Native_Ads_Preload_1 getInstance(Context mContext) {
+    public static Native_Ads_Preload_1 getInstance(Activity mContext) {
         context = mContext;
         preference = new AppPreference(mContext);
         if (mInstance == null) {
@@ -58,28 +58,28 @@ public class Native_Ads_Preload_1 {
         switch (type) {
             case "banner":
                 if (preference.getNativeflag().equalsIgnoreCase("on")) {
-                    Native_Banner_Ads(viewGroup);
+                    Native_Banner_Ads(context, viewGroup);
                 } else {
                     viewGroup.setVisibility(View.GONE);
                 }
                 break;
             case "small":
                 if (preference.getNativeflag().equalsIgnoreCase("on")) {
-                    Native_Small_Ads(viewGroup);
+                    Native_Small_Ads(context, viewGroup);
                 } else {
                     viewGroup.setVisibility(View.GONE);
                 }
                 break;
             case "medium":
                 if (preference.getNativeflag().equalsIgnoreCase("on")) {
-                    Native_Medium_Size(viewGroup);
+                    Native_Medium_Size(context, viewGroup);
                 } else {
                     viewGroup.setVisibility(View.GONE);
                 }
                 break;
             case "large":
                 if (preference.getNativeflag().equalsIgnoreCase("on")) {
-                    Native_Large_Size(viewGroup);
+                    Native_Large_Size(context, viewGroup);
                 } else {
                     viewGroup.setVisibility(View.GONE);
                 }
@@ -107,10 +107,10 @@ public class Native_Ads_Preload_1 {
     }
 
 
-    public void Native_Banner_Ads(final FrameLayout viewGroup) {
+    public void Native_Banner_Ads(Activity activity, final FrameLayout viewGroup) {
         new Native_Ads_Static(context).Native_Banner_Ads(viewGroup);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-            Object nativeAd = Native_Ads_Load.getNextNativeAd();
+            Object nativeAd = Native_Ads_Load.getNextNativeAd(activity);
             if (nativeAd != null) {
                 if (nativeAd instanceof NativeAd) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp, viewGroup, false);
@@ -133,10 +133,10 @@ public class Native_Ads_Preload_1 {
         }
     }
 
-    public void Native_Small_Ads(final FrameLayout viewGroup) {
+    public void Native_Small_Ads(Activity activity, final FrameLayout viewGroup) {
         new Native_Ads_Static(context).Adaptive_Banner(viewGroup);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-            Object nativeAd = Native_Ads_Load.getNextNativeAd();
+            Object nativeAd = Native_Ads_Load.getNextNativeAd(activity);
             if (nativeAd != null) {
                 if (nativeAd instanceof NativeAd) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp1, viewGroup, false);
@@ -159,10 +159,10 @@ public class Native_Ads_Preload_1 {
         }
     }
 
-    public void Native_Medium_Size(final FrameLayout viewGroup) {
+    public void Native_Medium_Size(Activity activity, final FrameLayout viewGroup) {
         new Native_Ads_Static(context).Native_Banner_Ads1(viewGroup);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-            Object nativeAd = Native_Ads_Load.getNextNativeAd();
+            Object nativeAd = Native_Ads_Load.getNextNativeAd(activity);
             if (nativeAd != null) {
                 if (nativeAd instanceof NativeAd) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp1, viewGroup, false);
@@ -184,10 +184,10 @@ public class Native_Ads_Preload_1 {
         }
     }
 
-    public void Native_Large_Size(final FrameLayout viewGroup) {
+    public void Native_Large_Size(Activity activity, final FrameLayout viewGroup) {
         new Native_Ads_Static(context).Native_Ads(viewGroup);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-            Object nativeAd = Native_Ads_Load.getNextNativeAd();
+            Object nativeAd = Native_Ads_Load.getNextNativeAd(activity);
             if (nativeAd != null) {
                 if (nativeAd instanceof NativeAd) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.am_activity_native_ads_temp, viewGroup, false);
