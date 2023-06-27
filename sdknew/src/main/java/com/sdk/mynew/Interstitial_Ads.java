@@ -66,7 +66,5 @@ public class Interstitial_Ads {
 
     public interface AdCloseListener {
         void onAdClosed();
-
-        void onUrlView();
     }
 }
