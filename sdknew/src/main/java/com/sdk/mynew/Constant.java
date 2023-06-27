@@ -88,4 +88,17 @@ public class Constant {
 
         }
     }
+
+    public static void Open_Url_View(Context context) {
+        if (new AppPreference(context).getDirect_link().equalsIgnoreCase("on")) {
+            String URL = new AppPreference(context).getUrl_for_ads();
+            try {
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.launchUrl(context, Uri.parse(URL));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

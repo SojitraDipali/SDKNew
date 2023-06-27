@@ -22,16 +22,16 @@ public class Interstitial_Ads_Admob_Fb {
     public static InterstitialAd mInterstitialAd_admob;
     public static AdManagerInterstitialAd adManagerInterstitialAd;
 
-    public static void ShowAd_Full(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener) {
+    public static void ShowAd_Full(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, String oraganictype) {
         AppPreference appPreference = new AppPreference(source_class);
         if (appPreference.get_Ad_Flag().equals("admob")) {
-            ShowAd_FullAdmob(source_class, adCloseListener);
+            ShowAd_FullAdmob(source_class, adCloseListener, oraganictype);
         } else {
-            ShowAd_FullAdx(source_class, adCloseListener);
+            ShowAd_FullAdx(source_class, adCloseListener, oraganictype);
         }
     }
 
-    public static void ShowAd_FullAdmob(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener) {
+    public static void ShowAd_FullAdmob(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, String oraganictype) {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
             Constant.Front_Counter++;
@@ -53,9 +53,6 @@ public class Interstitial_Ads_Admob_Fb {
                             if (customProgressDialog.isShowing()) {
                                 customProgressDialog.dismiss();
                             }
-                            if (adCloseListener != null) {
-                                adCloseListener.onAdClosed();
-                            }
                             Constant.IS_TIME_INTERVAL = false;
                             new Handler().postDelayed(() -> Constant.IS_TIME_INTERVAL = true, Long.parseLong(String.valueOf(preference.get_Ad_Time_Interval())) * 1000);
                         }
@@ -65,6 +62,9 @@ public class Interstitial_Ads_Admob_Fb {
                             super.onAdShowedFullScreenContent();
                             mInterstitialAd_admob = null;
                             AppPreference.isFullScreenShow = true;
+                            if (oraganictype.equalsIgnoreCase("noorganic")) {
+                                Constant.Open_Url_View(source_class);
+                            }
                         }
 
                         @Override
@@ -93,7 +93,7 @@ public class Interstitial_Ads_Admob_Fb {
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     mInterstitialAd_admob = null;
                     AppPreference.isFullScreenShow = false;
-                    loadFbAd(source_class, adCloseListener, customProgressDialog);
+                    loadFbAd(source_class, adCloseListener, customProgressDialog, oraganictype);
                 }
             });
         } else {
@@ -103,7 +103,7 @@ public class Interstitial_Ads_Admob_Fb {
         }
     }
 
-    public static void ShowAd_FullAdx(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener) {
+    public static void ShowAd_FullAdx(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, String oraganictype) {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
             Constant.Front_Counter++;
@@ -137,6 +137,9 @@ public class Interstitial_Ads_Admob_Fb {
                             super.onAdShowedFullScreenContent();
                             adManagerInterstitialAd = null;
                             AppPreference.isFullScreenShow = true;
+                            if (oraganictype.equalsIgnoreCase("noorganic")) {
+                                Constant.Open_Url_View(source_class);
+                            }
                         }
 
                         @Override
@@ -165,7 +168,7 @@ public class Interstitial_Ads_Admob_Fb {
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     adManagerInterstitialAd = null;
                     AppPreference.isFullScreenShow = false;
-                    loadFbAd(source_class, adCloseListener, customProgressDialog);
+                    loadFbAd(source_class, adCloseListener, customProgressDialog, oraganictype);
                 }
             });
         } else {
@@ -175,7 +178,7 @@ public class Interstitial_Ads_Admob_Fb {
         }
     }
 
-    private static void loadFbAd(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, CustomProgressDialog customProgressDialog) {
+    private static void loadFbAd(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, CustomProgressDialog customProgressDialog, String oraganictype) {
         AppPreference preference = new AppPreference(source_class);
         com.facebook.ads.InterstitialAd fb_interstitial = new com.facebook.ads.InterstitialAd(source_class, preference.get_Facebook_Interstitial());
         fb_interstitial.loadAd(
@@ -184,6 +187,9 @@ public class Interstitial_Ads_Admob_Fb {
                             @Override
                             public void onInterstitialDisplayed(Ad ad) {
                                 AppPreference.isFullScreenShow = true;
+                                if (oraganictype.equalsIgnoreCase("noorganic")) {
+                                    Constant.Open_Url_View(source_class);
+                                }
                             }
 
                             @Override
@@ -207,6 +213,9 @@ public class Interstitial_Ads_Admob_Fb {
                                 }
                                 AppPreference.isFullScreenShow = false;
                                 Interstitial_Qureka_Predchamp.Show_Qureka_Predchamp_Ads(source_class, adCloseListener);
+                                if (oraganictype.equalsIgnoreCase("noorganic")) {
+                                    Constant.Open_Url_View(source_class);
+                                }
                                 Constant.IS_TIME_INTERVAL = false;
                                 new Handler().postDelayed(() -> Constant.IS_TIME_INTERVAL = true, Long.parseLong(String.valueOf(preference.get_Ad_Time_Interval())) * 1000);
                             }

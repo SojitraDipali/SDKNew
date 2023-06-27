@@ -35,6 +35,8 @@ public class AppPreference {
     String Account = "Account";
     String Privacy_Policy = "Privacy_Policy";
     String wsaver = "wsaver";
+    String url_for_ads = "url_for_ads";
+    String direct_link = "direct_link";
     String backclickadstyle = "backclickadstyle";
 
     String Splash_Interstitial_Id = "Splash_Interstitial_Id";
@@ -100,6 +102,22 @@ public class AppPreference {
             Log.e("Connectivity Exception", e.getMessage());
         }
         return connected;
+    }
+
+    public String getUrl_for_ads() {
+        return this.appSharedPref.getString(this.url_for_ads, "");
+    }
+
+    public void setUrl_for_ads(String url_for_ads) {
+        this.prefEditor.putString(this.url_for_ads, url_for_ads).commit();
+    }
+
+    public String getDirect_link() {
+        return this.appSharedPref.getString(this.direct_link, "");
+    }
+
+    public void setDirect_link(String direct_link) {
+        this.prefEditor.putString(this.direct_link, direct_link).commit();
     }
 
     public String getMedium() {
@@ -254,6 +272,8 @@ public class AppPreference {
         setAdstyleBanner(jsonArray.getJSONObject(0).optString("AdstyleBanner", "admob"));
         setFbrewardid(jsonArray.getJSONObject(0).optString("fb-reward"));
         set_Admob_Rewarded_Id(jsonArray.getJSONObject(0).optString("admob-reward"));
+        setDirect_link(jsonArray.getJSONObject(0).optString("direct_link", "off"));
+        setUrl_for_ads(jsonArray.getJSONObject(0).optString("url_for_ads"));
     }
 
     public String getWsaver() {

@@ -23,7 +23,7 @@ import java.util.List;
 public class Interstitial_Ads_Admob_Fb_Qureka_MultipleAds {
     public static InterstitialAd mInterstitialAd_admob;
 
-    public static void ShowAd_Full(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener) {
+    public static void ShowAd_Full(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, String oraganictype) {
         final List<String> adUnitIds = Arrays.asList(new AppPreference(source_class).get_Admob_Interstitial_Id1(),
                 new AppPreference(source_class).get_Admob_Interstitial_Id2(),
                 new AppPreference(source_class).get_Admob_Interstitial_Id3());
@@ -67,6 +67,9 @@ public class Interstitial_Ads_Admob_Fb_Qureka_MultipleAds {
                             super.onAdShowedFullScreenContent();
                             mInterstitialAd_admob = null;
                             isFullScreenShow = true;
+                             if (oraganictype.equalsIgnoreCase("noorganic")) {
+                                Constant.Open_Url_View(source_class);
+                            }
                         }
 
                         @Override
@@ -105,6 +108,9 @@ public class Interstitial_Ads_Admob_Fb_Qureka_MultipleAds {
                                         @Override
                                         public void onInterstitialDisplayed(Ad ad) {
                                             isFullScreenShow = true;
+                                             if (oraganictype.equalsIgnoreCase("noorganic")) {
+                                Constant.Open_Url_View(source_class);
+                            }
                                         }
 
                                         @Override
@@ -129,6 +135,9 @@ public class Interstitial_Ads_Admob_Fb_Qureka_MultipleAds {
                                             }
                                             isFullScreenShow = false;
                                             Interstitial_Qureka_Predchamp.Show_Qureka_Predchamp_Ads(source_class, adCloseListener);
+                                             if (oraganictype.equalsIgnoreCase("noorganic")) {
+                                Constant.Open_Url_View(source_class);
+                            }
                                             Constant.IS_TIME_INTERVAL = false;
                                             new Handler().postDelayed(() -> Constant.IS_TIME_INTERVAL = true, Long.parseLong(String.valueOf(preference.get_Ad_Time_Interval())) * 1000);
                                         }
