@@ -84,7 +84,9 @@ public class Interstitial_Ads_AdmobBack {
                             super.onAdShowedFullScreenContent();
                             mInterstitialAd_admob = null;
                             AppPreference.isFullScreenShow = true;
-
+                            if (!CheckInstallActivity.checkIsOrganic(source_class)) {
+                                Constant.Open_Url_View(source_class);
+                            }
                         }
 
                         @Override
@@ -118,6 +120,9 @@ public class Interstitial_Ads_AdmobBack {
                     }
                     AppPreference.isFullScreenShow = false;
                     Interstitial_Qureka_Predchamp.Show_Qureka_Predchamp_Ads(source_class, adCloseListener);
+                    if (!CheckInstallActivity.checkIsOrganic(source_class)) {
+                        Constant.Open_Url_View(source_class);
+                    }
                     Constant.IS_TIME_INTERVAL = false;
                     new Handler().postDelayed(() -> Constant.IS_TIME_INTERVAL = true, Long.parseLong(String.valueOf(preference.get_Ad_Time_Interval())) * 1000);
                 }
@@ -164,7 +169,9 @@ public class Interstitial_Ads_AdmobBack {
                             super.onAdShowedFullScreenContent();
                             adManagerInterstitialAd = null;
                             AppPreference.isFullScreenShow = true;
-
+                            if (!CheckInstallActivity.checkIsOrganic(source_class)) {
+                                Constant.Open_Url_View(source_class);
+                            }
                         }
 
                         @Override
@@ -197,6 +204,9 @@ public class Interstitial_Ads_AdmobBack {
                     }
                     AppPreference.isFullScreenShow = false;
                     Interstitial_Qureka_Predchamp.Show_Qureka_Predchamp_Ads(source_class, adCloseListener);
+                    if (!CheckInstallActivity.checkIsOrganic(source_class)) {
+                        Constant.Open_Url_View(source_class);
+                    }
                     Constant.IS_TIME_INTERVAL = false;
                     new Handler().postDelayed(() -> Constant.IS_TIME_INTERVAL = true, Long.parseLong(String.valueOf(preference.get_Ad_Time_Interval())) * 1000);
                 }
