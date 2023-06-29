@@ -10,6 +10,7 @@ import androidx.browser.customtabs.CustomTabsIntent;
 
 public class Constant {
     public static int Alt_Cnt_Inter = 1;
+    public static int Alt_Back_Cnt_Inter = 1;
     public static int Alt_Cnt_Reward_Inter = 1;
     public static int Alt_Cnt_Reward = 1;
     public static int Alt_Cnt_OpenAd = 1;
