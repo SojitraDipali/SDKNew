@@ -30,7 +30,6 @@ public class Interstitial_Ads_Admob_Fb_Qureka_MultipleAds {
 
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-            Constant.Front_Counter++;
             if (Constant.FullAdCounter > 2) {
                 Constant.FullAdCounter = 0;
             }
@@ -151,7 +150,6 @@ public class Interstitial_Ads_Admob_Fb_Qureka_MultipleAds {
                                                 return;
                                             }
                                             fb_interstitial.show();
-                                            Constant.Front_Counter++;
                                         }
 
                                         @Override

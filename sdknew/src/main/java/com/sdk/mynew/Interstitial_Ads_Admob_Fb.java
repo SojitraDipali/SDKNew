@@ -34,7 +34,6 @@ public class Interstitial_Ads_Admob_Fb {
     public static void ShowAd_FullAdmob(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, String oraganictype) {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-            Constant.Front_Counter++;
             final CustomProgressDialog customProgressDialog = new CustomProgressDialog(source_class, "Showing Ad...");
             customProgressDialog.setCancelable(false);
             customProgressDialog.show();
@@ -106,7 +105,6 @@ public class Interstitial_Ads_Admob_Fb {
     public static void ShowAd_FullAdx(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener, String oraganictype) {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-            Constant.Front_Counter++;
             final CustomProgressDialog customProgressDialog = new CustomProgressDialog(source_class, "Showing Ad...");
             customProgressDialog.setCancelable(false);
             customProgressDialog.show();

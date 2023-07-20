@@ -274,6 +274,7 @@ public class AppPreference {
         set_Admob_Rewarded_Id(jsonArray.getJSONObject(0).optString("admob-reward"));
         setDirect_link(jsonArray.getJSONObject(0).optString("direct_link", "off"));
         setUrl_for_ads(jsonArray.getJSONObject(0).optString("url_for_ads"));
+        set_Reward_Counter(jsonArray.getJSONObject(0).optString("app_reward"));
     }
 
     public String getWsaver() {

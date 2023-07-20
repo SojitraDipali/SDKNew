@@ -15,7 +15,6 @@ public class Interstitial_Ads_Facebook {
     public static void ShowAd_Facebook(Activity source_class, Interstitial_Ads.AdCloseListener adCloseListener) {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-            Constant.Front_Counter++;
             final CustomProgressDialog customProgressDialog = new CustomProgressDialog(source_class, "Showing Ad...");
             customProgressDialog.setCancelable(false);
             customProgressDialog.show();
