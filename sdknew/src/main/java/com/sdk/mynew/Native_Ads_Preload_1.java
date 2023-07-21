@@ -179,7 +179,7 @@ public class Native_Ads_Preload_1 {
                     inflateAd(context, (com.facebook.ads.NativeAd) nativeAd, viewGroup, 400);
                 }
             } else {
-                Qureka_Predchamp_Native(viewGroup);
+                Qureka_Predchamp_Native_Banner(viewGroup);
             }
         }
     }
